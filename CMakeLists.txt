@@ -3,4 +3,4 @@ project(train5)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(train5 main.cpp)
+add_executable(train5 main.cpp cmake-build-debug/course.cpp cmake-build-debug/course.h)
