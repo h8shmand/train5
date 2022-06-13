@@ -3,7 +3,12 @@
 //
 
 #include "course.h"
-
+course::course() {
+    this->name = " ";
+    this->unit = 0;
+    this->mark = new double;
+    *this->mark = 0;
+}
 course::course(string name, int unit, double mark) {
     this->name = name;
     this->unit = unit;
@@ -14,11 +19,11 @@ course::course(string name, int unit, double mark) {
 course::course(const course &c) {
     name = c.name;
     unit = c.unit;
-    mark = c.mark;
+    *mark = *c.mark;
 }
 
 course::~course() {
-
+    delete mark;
 }
 
 void course::setName(string Name) {

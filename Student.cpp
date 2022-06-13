@@ -9,8 +9,10 @@ Student::Student(string lastName, string firstName, string id, double workHours,
                  course *courses, string FieldOfStudy, int numOfCourses)
         : person(lastName, firstName, id, workHours) {
     if (Student::validate(id)) {
-        this->courses = new course[numOfCourses];
-        this->courses = courses;
+        this->courses = new course[numOfCourses+3];
+        for (int i = 0; i < numOfCourses; i++) {
+            this->courses[i] = courses[i];
+        }
         this->FieldOfStudy = FieldOfStudy;
         this->numOfCourses = numOfCourses;
         person(lastName, firstName, id, workHours);
@@ -21,7 +23,7 @@ Student::Student(string lastName, string firstName, string id, double workHours,
 
 }
 
-Student::Student(const person &unnamed, const Student &s) : person(unnamed) {
+Student::Student(const person &p, const Student &s) : person(p) {
     courses = s.courses;
     FieldOfStudy = s.FieldOfStudy;
     numOfCourses = s.numOfCourses;
@@ -39,7 +41,7 @@ string Student::getFieldOfStudy() const {
     return FieldOfStudy;
 }
 
-void Student::setFieldOfStudy(const string &fieldOfStudy) {
+void Student::setFieldOfStudy(string fieldOfStudy) {
     FieldOfStudy = fieldOfStudy;
 }
 
@@ -52,7 +54,7 @@ void Student::setNumOfCourses(int numOfCourse) {
 }
 
 Student::~Student() {
-    delete []courses;
+    delete[]courses;
 }
 
 bool Student::validate(string Id) {
@@ -68,23 +70,24 @@ bool Student::validate(string Id) {
 double Student::gpa() {
     double sumOfMarks = 0.0;
     int sumOfUnits = 0;
-    for (int i = 0; i < numOfCourses ; i++) {
+    for (int i = 0; i < numOfCourses; i++) {
         sumOfMarks += ((courses[i].getMark()) * (courses[i].getUnit()));
         sumOfUnits += courses[i].getUnit();
     }
     return sumOfMarks / sumOfUnits;
 }
-istream& operator>>(istream& ist , Student& s){
+
+istream &operator>>(istream &ist, Student &s) {
     string str;
     double d;
-    cout<<"Enter firstname: ";
-    cin>>str;
+    cout << "Enter firstname: ";
+    cin >> str;
     s.setFirstName(str);
-    cout<<"Enter lastname: ";
-    cin>>str;
+    cout << "Enter lastname: ";
+    cin >> str;
     s.setLastName(str);
-    cout<<"Enter ID: ";
-    cin>>str;
+    cout << "Enter ID: ";
+    cin >> str;
     if (s.validate(str)) { s.setId(str); }
     else {
         cerr << "Error: Invalid ID!";
@@ -96,6 +99,7 @@ istream& operator>>(istream& ist , Student& s){
 
     return ist;
 }
+
 ostream &operator<<(ostream &ost, Student &s) {
     ost << "FirstName: " << s.getFirstName() << endl;
     ost << "LastName: " << s.getLastName() << endl;
@@ -104,8 +108,8 @@ ostream &operator<<(ostream &ost, Student &s) {
     ost << "Field of study: " << s.FieldOfStudy << endl;
     ost << "Number of courses: " << s.numOfCourses << endl;
     ost << "Courses: " << endl;
-    for (int i = 0; i < s.numOfCourses ; i++) {
-        ost<<(s.courses[i]);
+    for (int i = 0; i < s.numOfCourses; i++) {
+        ost << (s.courses[i]);
     }
     return ost;
 }

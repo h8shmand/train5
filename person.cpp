@@ -24,11 +24,11 @@ person::person(const person &p) {
     lastName = p.lastName;
     firstName = p.firstName;
     id = p.id;
-    workHours = p.workHours;
+    *workHours = *p.workHours;
 }
 
 person::~person() {
-    //delete workHours;
+    delete workHours;
 }
 
 void person::setFirstName(string FirstName) {
@@ -49,6 +49,7 @@ void person::setId(string Id) {
 }
 
 void person::setWorkHours(double WorkHours) {
+    workHours = new double;
     *workHours = WorkHours;
 }
 
@@ -83,6 +84,7 @@ istream &operator>>(istream &ist, person &p) {
         exit(1);
     }
     cout<<"Enter work hours: ";
+    p.workHours = new double;
     ist>>*p.workHours;
 
     return ist;
@@ -117,7 +119,7 @@ person& person::operator=(const person &p) {
         lastName = p.lastName;
         firstName = p.firstName;
         id = p.id;
-        workHours = p.workHours;
+        *workHours = *p.workHours;
     }
     return *this;
 }

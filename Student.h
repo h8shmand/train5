@@ -31,7 +31,7 @@ public:
 
     string getFieldOfStudy() const;
 
-    void setFieldOfStudy(const string &fieldOfStudy);
+    void setFieldOfStudy(string fieldOfStudy);
 
     int getNumOfCourses() const;
 
