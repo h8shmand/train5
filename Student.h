@@ -7,7 +7,7 @@
 
 
 #include "person.h"
-#include "cmake-build-debug/course.h"
+#include "course.h"
 
 class Student : public person{
 private:

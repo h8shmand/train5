@@ -1,5 +1,5 @@
 #include <iostream>
-#include "cmake-build-debug/course.h"
+#include "course.h"
 #include "Student.h"
 #include "Professor.h"
 #include "University.h"
