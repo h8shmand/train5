@@ -27,7 +27,7 @@ public:
 
     course *getCourses() const;
 
-    void setCourses(course *course);
+    void setCourses(course *Course);
 
     string getFieldOfStudy() const;
 
@@ -37,7 +37,7 @@ public:
 
     void setNumOfCourses(int numOfCourse);
 
-
+    Student& operator=(const Student& s);
 };
 
 

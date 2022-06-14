@@ -28,6 +28,7 @@ public:
     course& operator =(const course& c);
     friend istream& operator>>(istream& , course&);
     friend ostream& operator<<(ostream& , course&);
+    void operator()(string , int , double );
 };
 
 

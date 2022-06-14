@@ -24,10 +24,10 @@ public:
     void setId(string Id);
     void setWorkHours(double WorkHours);
     //get methods
-    string getFirstName();
-    string getLastName();
-    string getId();
-    double getWorkHours();
+    string getFirstName() const;
+    string getLastName() const;
+    string getId() const;
+    double getWorkHours() const;
     person& operator=(const person& p);
     friend istream& operator>>(istream& , person&);
     friend ostream& operator<<(ostream& , person&);

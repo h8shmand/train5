@@ -17,7 +17,7 @@ private:
     Professor *professor;
     Student *student;
 public:
-    University( long int budget = 0, int numOfProfessors = 0, int numOfStudents = 0, Professor *professor = 0, Student *student = 0);
+    University( long int budget = 0, int numOfProfessors = 0, int numOfStudents = 0, Professor *professor = nullptr, Student *student = nullptr);
 
     University(const University &u);
 

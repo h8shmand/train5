@@ -33,8 +33,11 @@ course *Student::getCourses() const {
     return courses;
 }
 
-void Student::setCourses(course *course) {
-    Student::courses = course;
+void Student::setCourses(course *Course) {
+    this->courses = new course[numOfCourses+3];
+    for(int i = 0 ; i<numOfCourses ; i++){
+        this->courses[i] = Course[i];
+    }
 }
 
 string Student::getFieldOfStudy() const {
@@ -121,5 +124,20 @@ double Student::calculateSalary() {
         return salary + (salary * 0.10);
     } else {
         return salary;
+    }
+}
+
+Student &Student::operator=(const Student &s) {
+    if(this == &s){
+        return *this;
+    }else {
+        this->setFirstName(s.getFirstName());
+        this->setLastName(s.getLastName());
+        this->setId(s.getId());
+        this->setWorkHours(s.getWorkHours());
+        this->setFieldOfStudy(s.getFieldOfStudy());
+        this->setNumOfCourses(s.numOfCourses);
+        this->setCourses(s.courses);
+        return *this;
     }
 }

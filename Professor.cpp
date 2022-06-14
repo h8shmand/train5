@@ -80,3 +80,15 @@ double Professor::calculateSalary() {
     }
     return salaryPerHour * (getWorkHours());
 }
+
+Professor &Professor::operator=(const Professor &p) {
+    if(this == &p){
+        return *this;
+    } else{
+        this->setFirstName(p.getFirstName());
+        this->setLastName(p.getLastName());
+        this->setId(p.getId());
+        this->setWorkHours(p.getWorkHours());
+        return *this;
+    }
+}

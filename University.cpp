@@ -11,9 +11,14 @@ University::University(long int budget, int numOfProfessors, int numOfStudents, 
     this->numOfProfessors = numOfProfessors;
     this->numOfStudents = numOfStudents;
     this->professor = new Professor[numOfProfessors];
-    this->professor = professor;
+    for (int i = 0; i < numOfProfessors; ++i) {
+        this->professor[i] = professor[i];
+    }
     this->student = new Student[numOfStudents];
-    this->student = student;
+    for (int i = 0; i < numOfStudents; ++i) {
+        this->student[i] = student[i];
+    }
+
 }
 
 University::University(const University &u) {
@@ -32,59 +37,68 @@ University::~University() {
 ostream &operator<<(ostream &ost, University &u) {
     cout << "-------------------" << endl;
     cout << "List of professors:" << endl;
-    auto *studentTemp = new Student[u.numOfStudents];
-    studentTemp = u.student;
-    auto *professorTemp = new Professor[u.numOfProfessors];
-    professorTemp = u.professor;
+  //  auto *studentTemp = new Student[u.numOfStudents+3];
+
+//    for (int i = 0; i < u.numOfStudents; ++i) {
+//        studentTemp[i].setFirstName(u.student[i].getFirstName());
+//
+//    }
+//    cout<<"g";
+//
+//    auto *professorTemp = new Professor[u.numOfProfessors+3];
+//    for (int i = 0; i < u.numOfProfessors; ++i) {
+//        professorTemp[i] = u.professor[i];
+//    }
+
     Professor tmp;
     Student tmp2;
     string firstEntryYearToString;
     string secondEntryYearToString;
     for (int i = 0; i < u.numOfProfessors - 1; i++) {
         for (int j = i + 1; j < u.numOfProfessors; j++) {
-            for (int k = 0; k < 2; k++) firstEntryYearToString[k] = professorTemp[i].getId()[k];
+            for (int k = 0; k < 2; k++) firstEntryYearToString[k] = u.professor[i].getId()[k];
             int firstEntryYear = stoi(firstEntryYearToString);
             if (firstEntryYear == 0) firstEntryYear = 100;
-            for (int k = 0; k < 2; k++) secondEntryYearToString[k] = professorTemp[j].getId()[k];
+            for (int k = 0; k < 2; k++) secondEntryYearToString[k] = u.professor[j].getId()[k];
             int secondEntryYear = stoi(secondEntryYearToString);
             if (secondEntryYear == 0) secondEntryYear = 100;
             if (firstEntryYear > secondEntryYear) {
-                tmp = professorTemp[i];
-                professorTemp[i] = professorTemp[j];
-                professorTemp[j] = tmp;
+                tmp = u.professor[i];
+                u.professor[i] = u.professor[j];
+                u.professor[j] = tmp;
             }if (firstEntryYear == secondEntryYear) {
 
             }
         }
     }
     for (int i = 0; i < u.numOfProfessors; ++i) {
-        ost << i + 1 << "-" << professorTemp[i].getFirstName() << " " << professorTemp[i].getLastName() << endl;
+        ost << i + 1 << "-" << u.professor[i].getFirstName() << " " << u.professor[i].getLastName() << endl;
     }
-    delete []professorTemp;
+
     cout << "-------------------" << endl;
     cout << "List of students:" << endl;
     for (int i = 0; i < u.numOfStudents - 1; i++) {
         for (int j = i + 1; j < u.numOfStudents; j++) {
-            for (int k = 0; k < 2; k++) firstEntryYearToString[k] = studentTemp[i].getId()[k];
+            for (int k = 0; k < 2; k++) firstEntryYearToString[k] = u.student[i].getId()[k];
             int firstEntryYear = stoi(firstEntryYearToString);
             if (firstEntryYear == 0) firstEntryYear = 100;
-            for (int k = 0; k < 2; k++) secondEntryYearToString[k] = studentTemp[j].getId()[k];
+            for (int k = 0; k < 2; k++) secondEntryYearToString[k] = u.student[j].getId()[k];
             int secondEntryYear = stoi(secondEntryYearToString);
             if (secondEntryYear == 0) secondEntryYear = 100;
             if (firstEntryYear > secondEntryYear) {
-                tmp2 = studentTemp[i];
-                studentTemp[i] = studentTemp[j];
-                studentTemp[j] = tmp2;
+                tmp2 = u.student[i];
+                u.student[i] = u.student[j];
+                u.student[j] = tmp2;
             } else if (firstEntryYear == secondEntryYear) {
-                int n = 0;
+
 
             }
         }
     }
     for (int i = 0; i < u.numOfStudents; ++i) {
-        ost << i + 1 << "-" << studentTemp[i].getFirstName() << " " << studentTemp[i].getLastName() << endl;
+        ost << i + 1 << "-" << u.student[i].getFirstName() << " " << u.student[i].getLastName() << endl;
     }
-    delete []studentTemp;
+
     return ost;
 }
 
@@ -201,7 +215,7 @@ void University::printCourse() {
             numOfCourses++;
         }
     }
-    auto *courses = new course[numOfCourses];
+    auto *courses = new course[numOfCourses+3];
     for (int i = 0; i < numOfStudents; i++) {
         for (int j = 0; j < student[i].getNumOfCourses(); j++) {
             courses[k] = student[i].getCourses()[j];
@@ -218,6 +232,8 @@ void University::printCourse() {
             }
         }
     }
+    cout<<"--------------------------"<<endl;
+    cout<<"\nCourses of University"<<endl;
     cout << "*AMC = Average Mark of Course\n" << endl;
     cout << "List of courses sorted by AMC:" << endl;
     int count = 1;
@@ -227,5 +243,6 @@ void University::printCourse() {
              << averageMarkOfCourse(courses[i].getName()) << endl;
         count++;
     }
+    cout<<"--------------------------"<<endl;
     delete[]courses;
 }

@@ -18,6 +18,7 @@ public:
     double calculateSalary();
     friend ostream& operator<<(ostream& ost , Professor& p);
     friend istream& operator>>(istream& ist , Professor& p);
+    Professor& operator =(const Professor& p);
 };
 
 

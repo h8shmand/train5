@@ -72,12 +72,17 @@ course &course::operator=(const course &c) {
         name = c.name;
         unit = c.unit;
         mark = new double ;
-        mark = c.mark;
+        *mark = *c.mark;
         return *this;
     }else{
         return *this;
     }
 }
 
-
+void course::operator()(string name, int unit, double mark) {
+    this->name = name;
+    this->unit = unit;
+    this->mark = new double;
+    *this->mark = mark;
+}
 

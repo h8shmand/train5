@@ -53,19 +53,19 @@ void person::setWorkHours(double WorkHours) {
     *workHours = WorkHours;
 }
 
-string person::getFirstName() {
+string person::getFirstName() const {
     return firstName;
 }
 
-string person::getLastName() {
+string person::getLastName() const {
     return lastName;
 }
 
-string person::getId() {
+string person::getId() const {
     return id;
 }
 
-double person::getWorkHours() {
+double person::getWorkHours() const {
     return *workHours;
 }
 
